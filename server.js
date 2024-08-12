@@ -39,6 +39,10 @@ app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/users", authenticateUser, userRouter);
 app.use("/api/v1/order", authenticateUser, orderRouter);
 app.use("/api/v1/web", authenticateUser, webRouter);
+
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "./client/dist", "index.html"));
+});
 // ERROR
 app.use("*", (req, res) => {
   res.status(404).json({ msg: "not found" });
