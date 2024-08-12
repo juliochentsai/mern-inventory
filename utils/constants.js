@@ -1,0 +1,27 @@
+export const CATEGORIA_L0_TYPE = {
+  MOLINETE: "MOLINETE",
+  ALICATE: "ALICATE",
+  ANZOL: "ANZOL",
+};
+
+export const PRODUCT_SORT_BY = {
+  NEWEST_FIRST: "newest",
+  OLDEST_FIRST: "oldest",
+  ASCENDING: "ascending",
+  DESCENDING: "descending",
+};
+
+// export const
+export const PRODUCT_FIELDS = {
+  CODIGO: "CODIGO",
+  DESCRIPCION: "DESCRIPCION",
+  CODIGO1: "CODIGO1",
+  COMPRA: "COMPRA",
+  PRECIO: "PRECIO",
+  CAJAS: "CAJAS",
+  CATEGORIA_L0: "CATEGORIA_L0",
+  CATEGORIA_L1: "CATEGORIA_L1",
+  MODELO: "MODELO",
+  COLOR: "COLOR",
+  IMAGE: "IMAGE",
+};
