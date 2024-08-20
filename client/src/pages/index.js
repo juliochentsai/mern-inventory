@@ -12,3 +12,7 @@ export { default as Orders } from "./Orders";
 export { default as AddOrder } from "./AddOrder";
 export { default as ViewOrder } from "./ViewOrder";
 export { default as EditOrder } from "./EditOrder";
+export { default as WebView } from "./WebView";
+export { default as AddWeb } from "./AddWeb";
+export { default as AddImage } from "./AddImage";
+export { default as AllImage } from "./AllImage";

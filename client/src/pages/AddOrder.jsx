@@ -73,13 +73,6 @@ const AddOrder = () => {
     });
   };
 
-  //UseState for form
-  // const [formValues, setFormValues] = useState(() => {
-  //   const savedValues = localStorage.getItem("formValues");
-  //   console.log(savedValues);
-  //   return savedValues ? JSON.parse(savedValues) : {};
-  // });
-
   const [formValues, setFormValues] = useState(() => {
     try {
       const savedValues = localStorage.getItem("formValues");

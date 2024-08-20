@@ -40,6 +40,8 @@ ProductSchema.post("findOneAndUpdate", async function (doc) {
         $set: {
           "products.$[elem].precio": doc.precio,
           "products.$[elem].cajas": doc.cajas,
+          "products.$[elem].modelo": doc.modelo,
+          "products.$[elem].color": doc.color,
         },
       },
       {
@@ -49,6 +51,27 @@ ProductSchema.post("findOneAndUpdate", async function (doc) {
     );
   } catch (error) {
     console.error("Error updating WebProduct documents:", error);
+  }
+});
+
+ProductSchema.post("findOneAndRemove", async function (doc) {
+  try {
+    if (doc) {
+      // Remove all references to the deleted Product from WebProduct
+      await WebProduct.updateMany(
+        { "products.product": doc._id },
+        {
+          $pull: {
+            products: { product: doc._id },
+          },
+        }
+      );
+    }
+  } catch (error) {
+    console.error(
+      "Error updating WebProduct documents on product removal:",
+      error
+    );
   }
 });
 

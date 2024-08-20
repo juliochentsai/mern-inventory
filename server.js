@@ -8,6 +8,7 @@ import authRouter from "./routers/authRouter.js";
 import userRouter from "./routers/userRouter.js";
 import orderRouter from "./routers/orderRouter.js";
 import webRouter from "./routers/webRouter.js";
+import imageRouter from "./routers/imageRouter.js";
 
 import errorHandlerMiddleware from "./middleware/errorHandlerMiddleware.js";
 import { authenticateUser } from "./middleware/authMiddleware.js";
@@ -39,6 +40,7 @@ app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/users", authenticateUser, userRouter);
 app.use("/api/v1/order", authenticateUser, orderRouter);
 app.use("/api/v1/web", authenticateUser, webRouter);
+app.use("/api/v1/images", authenticateUser, imageRouter);
 
 app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "./client/dist", "index.html"));

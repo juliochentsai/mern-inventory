@@ -35,7 +35,8 @@ export const getAllWebItems = async (req, res) => {
 };
 
 export const createWebItem = async (req, res) => {
-  const { products, description } = req.body;
+  const { products, description, title, group, categoria_l0, categoria_l1 } =
+    req.body;
   if (!Array.isArray(products) || products.length === 0) {
     return res
       .status(400)
@@ -44,6 +45,10 @@ export const createWebItem = async (req, res) => {
   const newItem = await WebProduct.create({
     products,
     description,
+    title,
+    group,
+    categoria_l0,
+    categoria_l1,
   });
 
   res.status(StatusCodes.CREATED).json({ item: newItem });

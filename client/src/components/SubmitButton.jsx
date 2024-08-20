@@ -1,5 +1,5 @@
 import { useNavigation } from "react-router-dom";
-const SubmitBtn = ({ formBtn }) => {
+const SubmitButton = ({ formBtn }) => {
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submitting";
   return (
@@ -12,4 +12,4 @@ const SubmitBtn = ({ formBtn }) => {
     </button>
   );
 };
-export default SubmitBtn;
+export default SubmitButton;

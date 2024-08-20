@@ -10,7 +10,8 @@ export const loader = async () => {
     const { data } = await customFetch.get("users/current-user");
     return data;
   } catch (err) {
-    return redirect("/");
+    return null;
+    // return redirect("/");
   }
 };
 const DashboardContext = createContext();
@@ -36,10 +37,10 @@ const DashboardLayout = () => {
     }
   );
 
-  useEffect(() => {
-    if (!isAuthError) return;
-    logoutUser();
-  }, [isAuthError]);
+  // useEffect(() => {
+  //   if (!isAuthError) return;
+  //   logoutUser();
+  // }, [isAuthError]);
 
   return (
     <DashboardContext.Provider

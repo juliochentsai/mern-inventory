@@ -9,5 +9,9 @@ const links = [
   { text: "orders", path: "orders", icon: <ImProfile /> },
   { text: "profile", path: "profile", icon: <ImProfile /> },
   { text: "todo", path: "todo", icon: <ImProfile /> },
+  { text: "web view", path: "web", icon: <ImProfile /> },
+  { text: "add web", path: "add-web", icon: <ImProfile /> },
+  { text: "add image", path: "add-image", icon: <ImProfile /> },
+  { text: "all image", path: "all-image", icon: <ImProfile /> },
 ];
 export default links;

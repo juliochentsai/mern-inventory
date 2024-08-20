@@ -18,6 +18,10 @@ const ProductDetailSchema = new mongoose.Schema(
       default: 0,
       min: 0, // Ensure price is non-negative
     },
+    imageUrl: String,
+    modelo: String,
+    color: String,
+    icon: String,
   },
   { _id: false }
 );
@@ -25,8 +29,11 @@ const ProductDetailSchema = new mongoose.Schema(
 const WebSchema = new mongoose.Schema(
   {
     products: [ProductDetailSchema],
+    title: String,
     description: String,
-    // other fields as needed
+    group: String,
+    categoria_l0: String,
+    categoria_l1: String,
   },
   { timestamps: true }
 );
@@ -44,6 +51,10 @@ WebSchema.pre("save", async function (next) {
       if (product) {
         productDetail.cajas = product.cajas;
         productDetail.precio = product.precio;
+        productDetail.modelo = product.modelo;
+        productDetail.color = product.color;
+        productDetail.imageUrl = product.imageUrl;
+
         // You can also set additional fields if needed
       } else {
         return next(

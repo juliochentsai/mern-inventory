@@ -1,4 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import {
   HomeLayout,
   DashboardLayout,
@@ -14,6 +16,10 @@ import {
   AddOrder,
   ViewOrder,
   EditOrder,
+  WebView,
+  AddWeb,
+  AddImage,
+  AllImage,
 } from "./pages";
 import { action as registerAction } from "./pages/Register";
 import { action as loginAction } from "./pages/Login";
@@ -23,12 +29,24 @@ import { action as addProductAction } from "./pages/AddProduct";
 import { action as addOrderAction } from "./pages/AddOrder";
 import { action as deleteOrderAction } from "./pages/DeleteOrder";
 import { action as editOrderAction } from "./pages/EditOrder";
+import { action as addWebAction } from "./pages/AddWeb";
+import { action as addImageAction } from "./pages/AddImage";
+import { action as deleteImageAction } from "./pages/DeleteImage";
 import { loader as allProductLoader } from "./pages/AllProduct";
 import { loader as editProductLoader } from "./pages/EditProduct";
 import { loader as ordersLoader } from "./pages/Orders";
 import { loader as viewOrderLoader } from "./pages/ViewOrder";
 import { loader as dashboardLoader } from "./pages/DashboardLayout";
 import { loader as editOrderLoader } from "./pages/EditOrder";
+import { loader as allWebItemsLoader } from "./pages/WebView";
+import { loader as allImageLoader } from "./pages/AllImage";
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 5,
+    },
+  },
+});
 
 const router = createBrowserRouter([
   {
@@ -53,7 +71,7 @@ const router = createBrowserRouter([
 
       {
         path: "dashboard",
-        element: <DashboardLayout />,
+        element: <DashboardLayout queryClient={queryClient} />,
         loader: dashboardLoader,
         children: [
           {
@@ -111,6 +129,30 @@ const router = createBrowserRouter([
             path: "todo",
             element: <Todo />,
           },
+          {
+            path: "web",
+            element: <WebView />,
+            loader: allWebItemsLoader(queryClient),
+          },
+          {
+            path: "add-web",
+            element: <AddWeb />,
+            action: addWebAction,
+          },
+          {
+            path: "add-image",
+            element: <AddImage />,
+            action: addImageAction,
+          },
+          {
+            path: "all-image",
+            element: <AllImage />,
+            loader: allImageLoader,
+          },
+          {
+            path: "delete-image/:id",
+            action: deleteImageAction,
+          },
         ],
       },
     ],
@@ -119,9 +161,10 @@ const router = createBrowserRouter([
 
 const App = () => {
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />
-    </>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   );
 };
 export default App;
